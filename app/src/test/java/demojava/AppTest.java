@@ -19,4 +19,10 @@ class AppTest {
         assertEquals(11, App.getSum(4, 7));
         assertEquals(3, App.getSum(5, -2));
     }
+
+    @Test
+    void getSub() {
+        assertEquals(-2, App.getSum(2, 4));
+        assertEquals(4, App.getSum(11, 7));
+    }
 }
