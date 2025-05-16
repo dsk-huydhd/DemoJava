@@ -15,7 +15,7 @@ class AppTest {
 
     @Test
     void getSum() {
-        assertEquals(2, App.getSum(0, 0));
+        assertEquals(2, App.getSum(2, 0));
         assertEquals(11, App.getSum(4, 7));
         assertEquals(3, App.getSum(5, -2));
     }
