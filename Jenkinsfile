@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    // tools {
-    //     jdk 'jdk-21' // Đặt tên theo Global Tool Configuration
-    // }
-
     stages {
         stage('Checkout') {
             steps {
