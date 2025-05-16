@@ -7,8 +7,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
+    @Test
+    void appHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    }
+
+    @Test
+    void getSum() {
+        assertEquals(2, App.getSum(0, 2));
+        assertEquals(11, App.getSum(4, 7));
+        assertEquals(3, App.getSum(5, -2));
     }
 }
