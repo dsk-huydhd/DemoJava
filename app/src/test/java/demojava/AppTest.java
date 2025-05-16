@@ -17,12 +17,12 @@ class AppTest {
     void getSum() {
         assertEquals(2, App.getSum(2, 0));
         assertEquals(11, App.getSum(4, 7));
-        assertEquals(3, App.getSum(3, -2));
+        assertEquals(1, App.getSum(3, -2));
     }
 
     @Test
     void getSub() {
-        assertEquals(-2, App.getSub(1, 4));
+        assertEquals(-2, App.getSub(2, 4));
         assertEquals(4, App.getSub(11, 7));
     }
 }
