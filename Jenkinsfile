@@ -26,12 +26,8 @@ pipeline {
             }
         }
     }
-    // post {
-    //     always {
-    //         archiveArtifacts artifacts: 'build/libs/*.jar'
-    //     }
-    // }
-        post {
+
+    post {
         success {
             echo '✅ Build and test succeeded!'
         }
