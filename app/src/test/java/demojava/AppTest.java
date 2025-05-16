@@ -22,7 +22,7 @@ class AppTest {
 
     @Test
     void getSub() {
-        assertEquals(-2, App.getSum(2, 4));
-        assertEquals(4, App.getSum(11, 7));
+        assertEquals(-2, App.getSub(2, 4));
+        assertEquals(4, App.getSub(11, 7));
     }
 }
