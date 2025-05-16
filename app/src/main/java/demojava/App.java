@@ -8,7 +8,12 @@ public class App {
         return "Hello World!";
     }
 
+    public static int getSum(int num1, int num2) {
+        return num1 + num2;
+    }
+
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+        System.out.println("Reusult = " + getSum(4, 7));
     }
 }
