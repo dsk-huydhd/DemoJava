@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/dsk-huydhd/DemoJava.git'
+                git branch: 'dev', url: 'https://github.com/dsk-huydhd/DemoJava.git'
             }
         }
 
