@@ -21,7 +21,8 @@ pipeline {
 
         stage('Publish Test Report') {
             steps {
-                junit 'build/test-results/test/*.xml'
+                sh 'ls -la app/build/test-results/test'
+                junit 'app/build/test-results/test/*.xml'
             }
         }
     }
