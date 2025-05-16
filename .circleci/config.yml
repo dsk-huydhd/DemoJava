@@ -1,0 +1,33 @@
+version: 2.1
+
+executors:
+  java-executor:
+    docker:
+    - image: cimg/openjdk:21.0
+    working_directory: ~/project
+
+jobs:
+  build:
+    executor: java-executor
+    steps:
+    - checkout
+
+    - run:
+        name: Set gradlew permissions
+        command: chmod +x ./gradlew
+
+    - run:
+        name: Run tests
+        command: ./gradlew clean test
+
+    - store_test_results:
+        path: build/test-results
+
+    - store_artifacts:
+        path: build/reports/tests/test
+        destination: test-report
+
+workflows:
+  build-and-test:
+    jobs:
+    - build
