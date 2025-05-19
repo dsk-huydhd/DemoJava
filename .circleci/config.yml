@@ -20,6 +20,12 @@ jobs:
         name: Run tests
         command: ./gradlew clean test
 
+    - run:
+        name: Check test result files
+        command: |
+          echo "Listing test result directory:"
+          ls -R test-results
+
     - store_test_results:
         path: /app/build/test-results/test
 
