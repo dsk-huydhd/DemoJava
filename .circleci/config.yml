@@ -21,10 +21,10 @@ jobs:
         command: ./gradlew clean test
 
     - store_test_results:
-        path: build/test-results
+        path: /app/build/test-results/test
 
     - store_artifacts:
-        path: build/reports/tests/test
+        path: /app/build/test-results/test
         destination: test-report
 
 workflows:
