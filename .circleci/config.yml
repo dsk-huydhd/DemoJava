@@ -24,7 +24,8 @@ jobs:
         name: Check test result files
         command: |
           echo "Listing test result directory:"
-          ls -R test-results
+          cd app/build/test-results/test/
+          ls -la
 
     - store_test_results:
         path: /app/build/test-results/test
