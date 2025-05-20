@@ -13,14 +13,6 @@ jobs:
     - checkout
 
     - run:
-        name: Set gradlew permissions
-        command: chmod +x ./gradlew
-
-    - run:
-        name: Run tests
-        command: ./gradlew clean test
-
-    - run:
         name: Notify Microsoft Teams on failure
         command: |
           curl -H "Content-Type: application/json" \
@@ -33,6 +25,14 @@ jobs:
                     "text": "Job **build** in CircleCI done. Please check the logs."
                   }' \
                 $TEAMS_WEBHOOK_URL
+
+    - run:
+        name: Set gradlew permissions
+        command: chmod +x ./gradlew
+
+    - run:
+        name: Run tests
+        command: ./gradlew clean test
 
     - run:
         name: Save test results
