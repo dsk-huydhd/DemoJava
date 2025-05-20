@@ -22,16 +22,15 @@ jobs:
 
     - run:
         name: Notify Microsoft Teams on failure
-        when: on_fail
         command: |
           curl -H "Content-Type: application/json" \
                 -d '{
                     "@type": "MessageCard",
                     "@context": "http://schema.org/extensions",
-                    "summary": "CircleCI Job Failed",
+                    "summary": "CircleCI Job",
                     "themeColor": "FF0000",
-                    "title": "❌ CircleCI Job Failed",
-                    "text": "Job **build** in CircleCI has failed. Please check the logs."
+                    "title": "CircleCI Job Notify",
+                    "text": "Job **build** in CircleCI done. Please check the logs."
                   }' \
                 $TEAMS_WEBHOOK_URL
 
