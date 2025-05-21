@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         SONARQUBE = 'SonarQube'  // Tên server SonarQube mà bạn đã cấu hình trong Jenkins
-        SONARQUBE_TOKEN = credentials('sqp_9de03a68db351a056e5ca74d5689c229468214ef')  // Chứa token từ Jenkins Credentials
+        SONARQUBE_TOKEN = credentials('sqa_d6683a07bc0a7ad1699058fa5740b716e82376fa')  // Chứa token từ Jenkins Credentials
     }
 
     stages {
@@ -23,12 +23,11 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    sh './gradlew sonar'
-                    // // Chạy SonarQube Scanner để phân tích mã nguồn
-                    // withSonarQubeEnv(SONARQUBE) {
-                    //     // sh 'mvn clean install sonar:sonar -Dsonar.login=$SONARQUBE_TOKEN'
-                    //     sh
-                    // }
+                    // sh './gradlew sonar'
+                    // Chạy SonarQube Scanner để phân tích mã nguồn
+                    withSonarQubeEnv(SONARQUBE) {
+                        sh 'mvn clean install sonar:sonar -Dsonar.login=$SONARQUBE_TOKEN'
+                    }
                 }
             }
         }
