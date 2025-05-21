@@ -23,10 +23,12 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    // Chạy SonarQube Scanner để phân tích mã nguồn
-                    withSonarQubeEnv(SONARQUBE) {
-                        sh 'mvn clean install sonar:sonar -Dsonar.login=$SONARQUBE_TOKEN'
-                    }
+                    sh './gradlew sonar'
+                    // // Chạy SonarQube Scanner để phân tích mã nguồn
+                    // withSonarQubeEnv(SONARQUBE) {
+                    //     // sh 'mvn clean install sonar:sonar -Dsonar.login=$SONARQUBE_TOKEN'
+                    //     sh
+                    // }
                 }
             }
         }
