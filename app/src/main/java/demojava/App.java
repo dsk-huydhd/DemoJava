@@ -3,7 +3,11 @@
  */
 package demojava;
 
+import java.util.logging.Logger;
+
 public class App {
+    Logger logger = Logger.getLogger(getClass().getName());
+
     public String getGreeting() {
         return "Hello World!";
     }
@@ -16,8 +20,9 @@ public class App {
         return num1 - num2;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    public void main(String[] args) {
+        logger.info(new App().getGreeting());
         System.out.println("Reusult = " + getSum(4, 7));
+        logger.info("Done!");
     }
 }
