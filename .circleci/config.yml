@@ -13,6 +13,31 @@ jobs:
     - checkout
 
     - run:
+        name: Set gradlew permissions
+        command: chmod +x ./gradlew
+
+    - run:
+        name: Run tests
+        command: ./gradlew clean test
+
+    - run:
+        name: Save test results
+        command: |
+          echo "Listing test result directory:"
+          cd app/build/test-results/test/
+          ls -la
+          mkdir -p ~/test-results/junit/
+          find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+        when: always
+
+    - store_test_results:
+        path: ~/test-results
+
+    - store_artifacts:
+        path: ~/test-results
+        destination: test-report
+
+    - run:
         name: Notify Microsoft Teams on PASSED
         when: on_success
         command: |
@@ -40,31 +65,6 @@ jobs:
                     "text": "Job **build** in CircleCI FAILED. Please check the logs."
                   }' \
                 $TEAMS_WEBHOOK_URL
-
-    - run:
-        name: Set gradlew permissions
-        command: chmod +x ./gradlew
-
-    - run:
-        name: Run tests
-        command: ./gradlew clean test
-
-    - run:
-        name: Save test results
-        command: |
-          echo "Listing test result directory:"
-          cd app/build/test-results/test/
-          ls -la
-          mkdir -p ~/test-results/junit/
-          find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
-        when: always
-
-    - store_test_results:
-        path: ~/test-results
-
-    - store_artifacts:
-        path: ~/test-results
-        destination: test-report
 
 workflows:
   build-and-test:
