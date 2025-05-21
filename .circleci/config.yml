@@ -13,16 +13,31 @@ jobs:
     - checkout
 
     - run:
-        name: Notify Microsoft Teams on failure
+        name: Notify Microsoft Teams on PASSED
+        when: on_success
         command: |
           curl -H "Content-Type: application/json" \
                 -d '{
                     "@type": "MessageCard",
                     "@context": "http://schema.org/extensions",
-                    "summary": "CircleCI Job",
+                    "summary": "CircleCI Job PASS",
+                    "themeColor": "#28a745",
+                    "title": "CircleCI Job Notify",
+                    "text": "Job **build** in CircleCI done."
+                  }' \
+                $TEAMS_WEBHOOK_URL
+    - run:
+        name: Notify Microsoft Teams on FAILED
+        when: on_fail
+        command: |
+          curl -H "Content-Type: application/json" \
+                -d '{
+                    "@type": "MessageCard",
+                    "@context": "http://schema.org/extensions",
+                    "summary": "CircleCI Job FAILED",
                     "themeColor": "FF0000",
                     "title": "CircleCI Job Notify",
-                    "text": "Job **build** in CircleCI done. Please check the logs."
+                    "text": "Job **build** in CircleCI FAILED. Please check the logs."
                   }' \
                 $TEAMS_WEBHOOK_URL
 
