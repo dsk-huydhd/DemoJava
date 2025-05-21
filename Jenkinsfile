@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        SONARQUBE = 'SonarQube'  // Tên server SonarQube mà bạn đã cấu hình trong Jenkins
+        SONARQUBE_TOKEN = credentials('sqp_9de03a68db351a056e5ca74d5689c229468214ef')  // Chứa token từ Jenkins Credentials
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -12,6 +17,17 @@ pipeline {
             steps {
                 sh 'chmod +x gradlew'
                 sh './gradlew clean test'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    // Chạy SonarQube Scanner để phân tích mã nguồn
+                    withSonarQubeEnv(SONARQUBE) {
+                        sh 'mvn clean install sonar:sonar -Dsonar.login=$SONARQUBE_TOKEN'
+                    }
+                }
             }
         }
 
