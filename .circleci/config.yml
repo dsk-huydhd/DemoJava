@@ -30,6 +30,10 @@ jobs:
           find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
         when: always
 
+    - run:
+        name: Analyze on SonarQube Cloud
+        command: ./gradlew build sonarqube
+
     - store_test_results:
         path: ~/test-results
 
